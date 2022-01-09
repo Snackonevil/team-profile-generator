@@ -13,9 +13,13 @@ function buildProfile() {
     console.log("Building team profile...");
 }
 
+function addEmployee(employee) {
+    employees.push(employee);
+}
+
 async function handleRedirect() {
     const { answer } = await inquirer.prompt(redirect);
-    answer == "Add Employee" ? addEmployee() : console.log("delete?");
+    answer == "Add Employee" ? buildEmployee() : console.log("delete?");
 }
 
 async function buildEmployee() {
@@ -24,14 +28,10 @@ async function buildEmployee() {
     continueBuild();
 }
 
-function addEmployee(employee) {
-    employees.push(employee);
-}
-
 async function confirmTeam() {
     console.log(employees);
     const { answer } = await inquirer.prompt(finalizeTeam);
-    answer == true ? buildProfile() : handleRedirect();
+    answer ? buildProfile() : handleRedirect();
 }
 
 async function continueBuild() {
@@ -40,8 +40,8 @@ async function continueBuild() {
 }
 
 async function initBuild() {
-    let manager = await inquirer.prompt(initPrompt);
-    addEmployee(manager);
+    const manager = await inquirer.prompt(initPrompt);
+    addEmployee({ role: "Manager", ...manager });
     continueBuild();
 }
 

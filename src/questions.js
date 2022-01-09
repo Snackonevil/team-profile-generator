@@ -1,6 +1,8 @@
 const inquirer = require("inquirer");
 
-async function stringValidation(input) {}
+// async function stringValidation(input) {
+//     input.typeOf() !== "string" ? false : true;
+// }
 
 const initPrompt = [
     {
@@ -9,9 +11,16 @@ const initPrompt = [
         message: "What is the name of the team's manager?",
     },
     {
-        type: "input",
+        type: "number",
         name: "id",
-        message: "Manager's Id#:",
+        message: "Manager's employee Id#:",
+        // validate: answer => {
+        //     if (isNaN(answer.id)) {
+        //         return "please enter an integer";
+        //     } else {
+        //         return true;
+        //     }
+        // },
     },
     {
         type: "input",
@@ -19,7 +28,7 @@ const initPrompt = [
         message: "Manager's email:",
     },
     {
-        type: "input",
+        type: "number",
         name: "officeNumber",
         message: "Manager's office number:",
     },
@@ -31,6 +40,7 @@ const employeePrompt = [
         name: "role",
         message: "What role will this employee have?",
         choices: [
+            new inquirer.Separator(),
             "Engineer",
             new inquirer.Separator(),
             "Intern",
@@ -43,7 +53,7 @@ const employeePrompt = [
         message: employee => `${employee.role}'s name:`,
     },
     {
-        type: "input",
+        type: "number",
         name: "id",
         message: employee => `${employee.role}'s employee ID#:`,
     },
@@ -56,13 +66,13 @@ const employeePrompt = [
         type: "input",
         name: "github",
         message: "Engineer's github:",
-        when: employee => employee.role === "Engineer",
+        when: ({ role }) => role === "Engineer",
     },
     {
         type: "input",
         name: "school",
         message: "Intern's school:",
-        when: employee => employee.role === "Intern",
+        when: ({ role }) => role === "Intern",
     },
 ];
 
