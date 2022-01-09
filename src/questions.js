@@ -4,6 +4,20 @@ const inquirer = require("inquirer");
 //     input.typeOf() !== "string" ? false : true;
 // }
 
+function validateEmail(email) {
+    if (
+        String(email)
+            .toLowerCase()
+            .match(
+                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            )
+    ) {
+        return true;
+    } else {
+        return "Please enter valid email address";
+    }
+}
+
 const initPrompt = [
     {
         type: "input",
@@ -23,19 +37,7 @@ const initPrompt = [
         type: "input",
         name: "email",
         message: "Manager's email:",
-        validate: function validateEmail(email) {
-            if (
-                String(email)
-                    .toLowerCase()
-                    .match(
-                        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-                    )
-            ) {
-                return true;
-            } else {
-                return "Please enter valid email address";
-            }
-        },
+        validate: email => validateEmail(email),
     },
     {
         type: "input",
@@ -79,19 +81,7 @@ const employeePrompt = [
         type: "input",
         name: "email",
         message: employee => `${employee.role}'s Email:`,
-        validate: function validateEmail(email) {
-            if (
-                String(email)
-                    .toLowerCase()
-                    .match(
-                        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-                    )
-            ) {
-                return true;
-            } else {
-                return "Please enter valid email address";
-            }
-        },
+        validate: email => validateEmail(email),
     },
     {
         type: "input",
