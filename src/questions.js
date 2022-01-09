@@ -11,16 +11,13 @@ const initPrompt = [
         message: "What is the name of the team's manager?",
     },
     {
-        type: "number",
+        type: "input",
         name: "id",
         message: "Manager's employee Id#:",
-        // validate: answer => {
-        //     if (isNaN(answer.id)) {
-        //         return "please enter an integer";
-        //     } else {
-        //         return true;
-        //     }
-        // },
+        validate: function (value) {
+            const valid = !isNaN(parseInt(value));
+            return valid ? true : "Please enter an integer";
+        },
     },
     {
         type: "input",
@@ -28,9 +25,13 @@ const initPrompt = [
         message: "Manager's email:",
     },
     {
-        type: "number",
+        type: "input",
         name: "officeNumber",
         message: "Manager's office number:",
+        validate: function (value) {
+            const valid = !isNaN(parseInt(value));
+            return valid ? true : "Please enter an integer";
+        },
     },
 ];
 
@@ -56,6 +57,10 @@ const employeePrompt = [
         type: "number",
         name: "id",
         message: employee => `${employee.role}'s employee ID#:`,
+        validate: function (value) {
+            const valid = !isNaN(parseInt(value));
+            return valid ? true : "Please enter an integer";
+        },
     },
     {
         type: "input",
