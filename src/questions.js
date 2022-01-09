@@ -23,6 +23,19 @@ const initPrompt = [
         type: "input",
         name: "email",
         message: "Manager's email:",
+        validate: function validateEmail(email) {
+            if (
+                String(email)
+                    .toLowerCase()
+                    .match(
+                        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+                    )
+            ) {
+                return true;
+            } else {
+                return "Please enter valid email address";
+            }
+        },
     },
     {
         type: "input",
@@ -66,6 +79,19 @@ const employeePrompt = [
         type: "input",
         name: "email",
         message: employee => `${employee.role}'s Email:`,
+        validate: function validateEmail(email) {
+            if (
+                String(email)
+                    .toLowerCase()
+                    .match(
+                        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+                    )
+            ) {
+                return true;
+            } else {
+                return "Please enter valid email address";
+            }
+        },
     },
     {
         type: "input",
