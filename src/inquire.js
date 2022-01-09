@@ -5,6 +5,7 @@ const {
     confirm,
     finalizeTeam,
     redirect,
+    removeEmployee,
 } = require("./questions");
 
 let employees = [];
@@ -17,9 +18,20 @@ function addEmployee(employee) {
     employees.push(employee);
 }
 
+async function handleRemove() {
+    const { id, answer } = await inquirer.prompt(removeEmployee);
+    if (answer == true) {
+        employees = employees.filter(employee => employee.id !== id);
+        console.log(`Employee with ID ${id} has been removed\n`);
+        confirmTeam();
+    } else {
+        confirmTeam();
+    }
+}
+
 async function handleRedirect() {
     const { answer } = await inquirer.prompt(redirect);
-    answer == "Add Employee" ? buildEmployee() : console.log("delete?");
+    answer == "Add Employee" ? buildEmployee() : handleRemove();
 }
 
 async function buildEmployee() {

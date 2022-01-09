@@ -4,6 +4,12 @@ const inquirer = require("inquirer");
 //     input.typeOf() !== "string" ? false : true;
 // }
 
+function validateInteger(input) {
+    const valid = !isNaN(parseInt(input));
+    return valid ? true : "Please enter an integer";
+}
+
+// Found on StackOverflow. Can be bypassed with email like d@d.com
 function validateEmail(email) {
     if (
         String(email)
@@ -28,25 +34,19 @@ const initPrompt = [
         type: "input",
         name: "id",
         message: "Manager's employee Id#:",
-        validate: function (value) {
-            const valid = !isNaN(parseInt(value));
-            return valid ? true : "Please enter an integer";
-        },
+        // validate: input => validateInteger(input),
     },
     {
         type: "input",
         name: "email",
         message: "Manager's email:",
-        validate: email => validateEmail(email),
+        // validate: email => validateEmail(email),
     },
     {
         type: "input",
         name: "officeNumber",
         message: "Manager's office number:",
-        validate: function (value) {
-            const valid = !isNaN(parseInt(value));
-            return valid ? true : "Please enter an integer";
-        },
+        // validate: input => validateInteger(input),
     },
 ];
 
@@ -69,19 +69,16 @@ const employeePrompt = [
         message: employee => `${employee.role}'s name:`,
     },
     {
-        type: "number",
+        type: "input",
         name: "id",
         message: employee => `${employee.role}'s employee ID#:`,
-        validate: function (value) {
-            const valid = !isNaN(parseInt(value));
-            return valid ? true : "Please enter an integer";
-        },
+        // validate: input => validateInteger(input),
     },
     {
         type: "input",
         name: "email",
         message: employee => `${employee.role}'s Email:`,
-        validate: email => validateEmail(email),
+        // validate: email => validateEmail(email),
     },
     {
         type: "input",
@@ -128,10 +125,24 @@ const redirect = [
     },
 ];
 
+const removeEmployee = [
+    {
+        type: "input",
+        name: "id",
+        message: "Enter the Id of the employee you wish to remove",
+    },
+    {
+        type: "confirm",
+        name: "answer",
+        message: id => `You entered Employee Id ${id.id}. Ok to remove?`,
+    },
+];
+
 module.exports = {
     initPrompt,
     employeePrompt,
     confirm,
     finalizeTeam,
     redirect,
+    removeEmployee,
 };
