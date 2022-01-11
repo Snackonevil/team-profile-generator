@@ -3,7 +3,8 @@ const generateMarkup = require("./src/buildProfile");
 
 async function build() {
     await initBuild();
-    await generateMarkup(team);
+    const markUp = await generateMarkup(team);
+    console.log(markUp);
 }
 
 build();

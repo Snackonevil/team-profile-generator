@@ -12,6 +12,9 @@ const Engineer = require("../lib/Engineer");
 const Intern = require("../lib/Intern");
 
 let team = [];
+let keepGoing = true;
+let finishBuild = false;
+let removeState = false;
 
 // function buildProfile() {
 //     console.log("Building team profile...");
@@ -35,16 +38,16 @@ async function handleRemove() {
     if (answer === true) {
         team = team.filter(employee => employee.id !== id);
         console.log(`Employee with ID ${id} has been removed\n`);
-        confirmTeam();
+        confirmBuild();
     } else {
-        confirmTeam();
+        confirmBuild();
     }
 }
 
 // Menu to add or remove employee
 async function handleRedirect() {
     const { answer } = await inquirer.prompt(redirect);
-    answer === "Add Employee" ? buildEmployee() : handleRemove();
+    answer === "Add Employee" ? (keepGoing = true) : (removeState = true);
 }
 
 // Prompt user input to create employee
@@ -55,23 +58,35 @@ async function buildEmployee() {
 
 // Confirmation to build profile
 // or take to add/remove menu
-async function confirmTeam() {
+async function confirmBuild() {
     console.log(team);
     const { answer } = await inquirer.prompt(finalizeTeam);
-    answer ? buildProfile() : handleRedirect();
+    return (finishBuild = answer);
 }
 
 // Prompt user to add another employee or build team
 async function continueBuild() {
     const { answer } = await inquirer.prompt(confirm);
-    answer ? buildEmployee() : confirmTeam();
+    return (keepGoing = answer);
 }
 
 // Start build with Manager class
 async function initBuild() {
     let manager = await inquirer.prompt(initPrompt);
     addEmployee(manager);
-    await buildEmployee();
+    await continueBuild();
+    while (finishBuild === false) {
+        while (keepGoing === true) {
+            await buildEmployee();
+            await continueBuild();
+        }
+        await confirmBuild();
+        if (finishBuild === false) {
+            await handleRedirect();
+        } else if (finishBuild === false && removeState === true) {
+            await removeEmployee();
+        }
+    }
 }
 
 module.exports = { team, initBuild };

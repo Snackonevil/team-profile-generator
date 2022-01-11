@@ -5,7 +5,7 @@ function generateMarkup(team) {
     team.forEach(employee => {
         output += `${employee.getRole()} ${employee.getName()} ${employee.getId()}`;
     });
-    console.log(output);
+    return output;
 }
 
 module.exports = generateMarkup;
