@@ -37,10 +37,9 @@ async function handleRemove() {
     const { id, answer } = await inquirer.prompt(removeEmployee);
     if (answer === true) {
         team = team.filter(employee => employee.id !== id);
-        console.log(`Employee with ID ${id} has been removed\n`);
-        confirmBuild();
+        console.log(`Employee with ID ${id} has been removed:`);
     } else {
-        confirmBuild();
+        return (removeState = false);
     }
 }
 
@@ -80,11 +79,12 @@ async function initBuild() {
             await buildEmployee();
             await continueBuild();
         }
+        if (removeState === true) {
+            await handleRemove();
+        }
         await confirmBuild();
         if (finishBuild === false) {
             await handleRedirect();
-        } else if (finishBuild === false && removeState === true) {
-            await removeEmployee();
         }
     }
 }
