@@ -1,7 +1,5 @@
-// const team = require("./inquire");
-let output = "";
-
 function generateMarkup(team) {
+    let output = "";
     team.forEach(employee => {
         output += `${employee.getRole()} ${employee.getName()} ${employee.getId()}`;
     });

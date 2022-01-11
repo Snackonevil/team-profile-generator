@@ -16,13 +16,6 @@ let keepGoing = true;
 let finishBuild = false;
 let removeState = false;
 
-// function buildProfile() {
-//     console.log("Building team profile...");
-//     console.log(team);
-//     console.log(team[0].getName());
-//     console.log(team[0].getRole());
-// }
-
 // Instantiate class based on role and add to team
 function addEmployee({ role, name, id, email, officeNumber, github, school }) {
     role === "Engineer"
@@ -87,6 +80,7 @@ async function initBuild() {
             await handleRedirect();
         }
     }
+    return team;
 }
 
-module.exports = { team, initBuild };
+module.exports = initBuild;
