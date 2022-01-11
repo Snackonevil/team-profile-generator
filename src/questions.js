@@ -1,15 +1,11 @@
 const inquirer = require("inquirer");
 
-// async function stringValidation(input) {
-//     input.typeOf() !== "string" ? false : true;
-// }
-
 function validateInteger(input) {
     const valid = !isNaN(parseInt(input));
     return valid ? true : "Please enter an integer";
 }
 
-// Found on StackOverflow. Can be bypassed with email like d@d.com
+// Found on StackOverflow.com Can be bypassed with email like "d@d.com"
 function validateEmail(email) {
     if (
         String(email)

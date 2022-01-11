@@ -16,19 +16,17 @@ let team = [];
 function buildProfile() {
     console.log("Building team profile...");
     console.log(team);
-    console.log(team[0].getName());
+    console.log(team[0].name);
     console.log(team[0].getRole());
 }
 
 // Instantiate class based on role and add to team
 function addEmployee({ role, id, name, email, officeNumber, github, school }) {
-    if (role === "Engineer") {
-        team.push(new Engineer(id, name, email, github));
-    } else if (role === "Intern") {
-        team.push(new Intern(id, name, email, school));
-    } else {
-        team.push(new Manager(id, name, email, officeNumber));
-    }
+    role === "Engineer"
+        ? team.push(new Engineer(id, name, email, github))
+        : role === "Intern"
+        ? team.push(new Intern(id, name, email, school))
+        : team.push(new Manager(id, name, email, officeNumber));
     continueBuild();
 }
 
@@ -64,7 +62,7 @@ async function confirmTeam() {
     answer ? buildProfile() : handleRedirect();
 }
 
-// Asks user if they want to add another employee
+// Prompt user to add another employee or build team
 async function continueBuild() {
     const { answer } = await inquirer.prompt(confirm);
     answer ? buildEmployee() : confirmTeam();
