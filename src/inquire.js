@@ -74,6 +74,4 @@ async function initBuild() {
     addEmployee(manager);
 }
 
-initBuild();
-
-module.exports = team;
+module.exports = { team, initBuild };
