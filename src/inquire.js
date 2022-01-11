@@ -16,17 +16,17 @@ let team = [];
 function buildProfile() {
     console.log("Building team profile...");
     console.log(team);
-    console.log(team[0].name);
+    console.log(team[0].getName());
     console.log(team[0].getRole());
 }
 
 // Instantiate class based on role and add to team
-function addEmployee({ role, id, name, email, officeNumber, github, school }) {
+function addEmployee({ role, name, id, email, officeNumber, github, school }) {
     role === "Engineer"
-        ? team.push(new Engineer(id, name, email, github))
+        ? team.push(new Engineer(name, id, email, github))
         : role === "Intern"
-        ? team.push(new Intern(id, name, email, school))
-        : team.push(new Manager(id, name, email, officeNumber));
+        ? team.push(new Intern(name, id, email, school))
+        : team.push(new Manager(name, id, email, officeNumber));
     continueBuild();
 }
 
