@@ -30,7 +30,9 @@ async function handleRemove() {
     const { id, answer } = await inquirer.prompt(removeEmployee);
     if (answer === true) {
         team = team.filter(employee => employee.id !== id);
-        console.log(`Employee with ID ${id} has been removed:`);
+        console.log(`***Employee with ID ${id} has been removed***`);
+        console.log("Here is your team:");
+        console.log(team);
     } else {
         return (removeState = false);
     }
@@ -38,15 +40,33 @@ async function handleRemove() {
 
 // Menu to add or remove employee
 async function handleRedirect() {
-    const { answer } = await inquirer.prompt(redirect);
-    answer === "Add Employee" ? (keepGoing = true) : (removeState = true);
+    let { choice } = await inquirer.prompt(redirect);
+    // answer === "Add Employee"
+    //     ? (keepGoing = true)
+    //     : answer === "Remove Employee"
+    //     ? (removeState = true)
+    //     : ((keepGoing = false), (finishBuild = true));
+
+    switch (choice) {
+        case "Add Employee":
+            keepGoing = true;
+            break;
+        case "Remove Employee":
+            removeState = true;
+            keepGoing = true;
+            break;
+        case "Finish Building My Team":
+            keepGoing = false;
+            finishBuild = true;
+            break;
+    }
+    return choice;
 }
 
 // Prompt user input to create employee
 async function buildEmployee() {
     let employee = await inquirer.prompt(employeePrompt);
     addEmployee(employee);
-    await continueBuild();
 }
 
 // Confirmation to build profile
@@ -54,7 +74,7 @@ async function buildEmployee() {
 async function confirmBuild() {
     console.log(team);
     const { answer } = await inquirer.prompt(finalizeTeam);
-    return (finishBuild = answer);
+    return answer === true ? (finishBuild = true) : (finishBuild = false);
 }
 
 // Prompt user to add another employee or build team
@@ -67,19 +87,44 @@ async function continueBuild() {
 async function initBuild() {
     let manager = await inquirer.prompt(initPrompt);
     addEmployee(manager);
-    await continueBuild();
-    while (finishBuild === false) {
-        while (keepGoing === true) {
-            await buildEmployee();
-        }
-        if (removeState === true) {
-            await handleRemove();
-        }
+    // let choice = await handleRedirect();
+    // if ((choice = "Add Employee" || "Remove Employee")) {
+    //     while (finishBuild === false) {
+    //         while (keepGoing === true) {
+    //             if (removeState === true) {
+    //                 await handleRemove();
+    //                 removeState = false;
+    //             } else {
+    //                 await buildEmployee();
+    //             }
+    //             await handleRedirect();
+    //         }
+    //         confirmBuild();
+    //     }
+    // } else {
+    //     if ((choice = "Finish Building My Team")) {
+    //         await confirmBuild();
+    //     }
+    // }
+
+    do {
+        do {
+            let choice = await handleRedirect();
+            switch (choice) {
+                case "Add Employee":
+                    await buildEmployee();
+                    break;
+                case "Remove Employee":
+                    await handleRemove();
+                    break;
+                case "Finish Building My Team":
+                    console.log("what");
+                    break;
+            }
+        } while ((keepGoing = true));
         await confirmBuild();
-        if (finishBuild === false) {
-            await handleRedirect();
-        }
-    }
+    } while ((finishBuild = false));
+
     return team;
 }
 

@@ -110,13 +110,14 @@ const finalizeTeam = [
 const redirect = [
     {
         type: "list",
-        name: "answer",
+        name: "choice",
         message: "What would you like to do?",
         choices: [
             "Add Employee",
             new inquirer.Separator(),
             "Remove Employee",
             new inquirer.Separator(),
+            "Finish Building My Team",
         ],
     },
 ];
