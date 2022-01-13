@@ -117,7 +117,7 @@ const redirect = [
             new inquirer.Separator(),
             "Remove Employee",
             new inquirer.Separator(),
-            "Finish Building My Team",
+            "Build Profile",
         ],
     },
 ];

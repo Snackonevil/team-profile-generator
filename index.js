@@ -11,7 +11,7 @@ function writeProfile(markUp) {
 async function createProfile() {
     const team = await initBuild();
     const markUp = await generateMarkup(team);
-    writeProfile(markUp);
+    // writeProfile(markUp);
     console.log(markUp);
 }
 

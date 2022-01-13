@@ -31,8 +31,6 @@ async function handleRemove() {
     if (answer === true) {
         team = team.filter(employee => employee.id !== id);
         console.log(`***Employee with ID ${id} has been removed***`);
-        console.log("Here is your team:");
-        console.log(team);
     } else {
         return (removeState = false);
     }
@@ -55,7 +53,7 @@ async function handleRedirect() {
             removeState = true;
             keepGoing = true;
             break;
-        case "Finish Building My Team":
+        case "Build Profile":
             keepGoing = false;
             finishBuild = true;
             break;
@@ -74,7 +72,16 @@ async function buildEmployee() {
 async function confirmBuild() {
     console.log(team);
     const { answer } = await inquirer.prompt(finalizeTeam);
-    return answer === true ? (finishBuild = true) : (finishBuild = false);
+    if (answer == true) {
+        finishBuild = true;
+        keepGoing = false;
+        return;
+    } else {
+        finishBuild = false;
+        keepGoing = true;
+        handleRedirect();
+        return;
+    }
 }
 
 // Prompt user to add another employee or build team
@@ -87,43 +94,49 @@ async function continueBuild() {
 async function initBuild() {
     let manager = await inquirer.prompt(initPrompt);
     addEmployee(manager);
-    // let choice = await handleRedirect();
-    // if ((choice = "Add Employee" || "Remove Employee")) {
-    //     while (finishBuild === false) {
-    //         while (keepGoing === true) {
-    //             if (removeState === true) {
-    //                 await handleRemove();
-    //                 removeState = false;
-    //             } else {
-    //                 await buildEmployee();
+    let choice = await handleRedirect();
+    if (choice == "Add Employee" || "Remove Employee") {
+        while (finishBuild === false) {
+            while (keepGoing === true) {
+                if (removeState === true) {
+                    await handleRemove();
+                    removeState = false;
+                } else {
+                    await buildEmployee();
+                }
+                console.log("Here is your current team:");
+                console.log(team);
+                await handleRedirect();
+            }
+            // await confirmBuild();
+        }
+    }
+    if (choice == "Build Profile") {
+        await confirmBuild();
+    }
+
+    // if (manager) {
+    //     while ((finishBuild = false)) {
+    //         while ((keepGoing = true)) {
+    //             if ((keepGoing = true)) {
+    //                 let choice = await handleRedirect();
+    //                 if ((choice = "Build Profile")) {
+    //                     await confirmBuild();
+    //                 }
+    //                 switch (choice) {
+    //                     case "Add Employee":
+    //                         await buildEmployee();
+    //                         break;
+    //                     case "Remove Employee":
+    //                         await handleRemove();
+    //                         break;
+    //                     // case "Build Profile":
+    //                     //     await confirmBuild();
+    //                 }
     //             }
-    //             await handleRedirect();
     //         }
-    //         confirmBuild();
-    //     }
-    // } else {
-    //     if ((choice = "Finish Building My Team")) {
-    //         await confirmBuild();
     //     }
     // }
-
-    do {
-        do {
-            let choice = await handleRedirect();
-            switch (choice) {
-                case "Add Employee":
-                    await buildEmployee();
-                    break;
-                case "Remove Employee":
-                    await handleRemove();
-                    break;
-                case "Finish Building My Team":
-                    console.log("what");
-                    break;
-            }
-        } while ((keepGoing = true));
-        await confirmBuild();
-    } while ((finishBuild = false));
 
     return team;
 }
