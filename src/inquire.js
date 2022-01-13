@@ -84,12 +84,6 @@ async function confirmBuild() {
     }
 }
 
-// Prompt user to add another employee or build team
-async function continueBuild() {
-    const { answer } = await inquirer.prompt(confirm);
-    return (keepGoing = answer);
-}
-
 // Main build function
 async function initBuild() {
     let manager = await inquirer.prompt(initPrompt);
@@ -130,8 +124,8 @@ async function initBuild() {
     //                     case "Remove Employee":
     //                         await handleRemove();
     //                         break;
-    //                     // case "Build Profile":
-    //                     //     await confirmBuild();
+    //                     case "Build Profile":
+    //                     //  await confirmBuild();
     //                 }
     //             }
     //         }
