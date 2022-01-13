@@ -46,6 +46,7 @@ async function handleRedirect() {
 async function buildEmployee() {
     let employee = await inquirer.prompt(employeePrompt);
     addEmployee(employee);
+    await continueBuild();
 }
 
 // Confirmation to build profile
@@ -62,7 +63,7 @@ async function continueBuild() {
     return (keepGoing = answer);
 }
 
-// Start build with Manager class
+// Main build function
 async function initBuild() {
     let manager = await inquirer.prompt(initPrompt);
     addEmployee(manager);
@@ -70,7 +71,6 @@ async function initBuild() {
     while (finishBuild === false) {
         while (keepGoing === true) {
             await buildEmployee();
-            await continueBuild();
         }
         if (removeState === true) {
             await handleRemove();
