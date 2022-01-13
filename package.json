@@ -1,17 +1,20 @@
 {
-  "name": "team-profile-generator",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "directories": {
-    "lib": "lib"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Kevin Lacson",
-  "license": "ISC",
-  "dependencies": {
-    "inquirer": "^8.2.0"
-  }
+    "name": "team-profile-generator",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "directories": {
+        "lib": "lib"
+    },
+    "scripts": {
+        "test": "jest"
+    },
+    "author": "Kevin Lacson",
+    "license": "ISC",
+    "dependencies": {
+        "inquirer": "^8.2.0"
+    },
+    "devDependencies": {
+        "jest": "^27.4.7"
+    }
 }
