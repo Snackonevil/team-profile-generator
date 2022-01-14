@@ -2,7 +2,6 @@ const inquirer = require("inquirer");
 const {
     initPrompt,
     employeePrompt,
-    confirm,
     finalizeTeam,
     redirect,
     removeEmployee,
@@ -11,10 +10,11 @@ const Manager = require("../lib/Manager");
 const Engineer = require("../lib/Engineer");
 const Intern = require("../lib/Intern");
 
+// Team Array
 let team = [];
+// Menu States
 let keepGoing = true;
 let finishBuild = false;
-let removeState = false;
 
 // Instantiate class based on role and add to team
 function addEmployee({ role, name, id, email, officeNumber, github, school }) {
@@ -25,7 +25,7 @@ function addEmployee({ role, name, id, email, officeNumber, github, school }) {
         : team.push(new Manager(name, id, email, officeNumber));
 }
 
-// Remove selected employee with id from team
+// Remove selected employee with id from team array
 async function handleRemove() {
     const { id, answer } = await inquirer.prompt(removeEmployee);
     if (answer === true) {

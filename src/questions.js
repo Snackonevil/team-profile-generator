@@ -90,14 +90,6 @@ const employeePrompt = [
     },
 ];
 
-const confirm = [
-    {
-        type: "confirm",
-        name: "answer",
-        message: "Would you like to add another employee?",
-    },
-];
-
 const finalizeTeam = [
     {
         type: "confirm",
@@ -138,7 +130,6 @@ const removeEmployee = [
 module.exports = {
     initPrompt,
     employeePrompt,
-    confirm,
     finalizeTeam,
     redirect,
     removeEmployee,
