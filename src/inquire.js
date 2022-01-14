@@ -12,9 +12,8 @@ const Intern = require("../lib/Intern");
 
 // Team Array
 let team = [];
-// Menu States
+// Menu State
 let keepGoing = true;
-let finishBuild = false;
 
 // Instantiate class based on role and add to team
 function addEmployee({ role, name, id, email, officeNumber, github, school }) {
@@ -45,7 +44,6 @@ async function handleRedirect() {
             await handleRemove();
             break;
         case "Build Profile":
-            keepGoing = false;
             await confirmBuild();
             break;
     }
@@ -57,16 +55,14 @@ async function buildEmployee() {
     addEmployee(employee);
 }
 
-// Confirmation to build profile
-// or take to change state to restart menu loop
+// Confirmation to build profile or to continue
 async function confirmBuild() {
     console.log(team);
     const { answer } = await inquirer.prompt(finalizeTeam);
     if (answer == true) {
-        finishBuild = true;
+        keepGoing = false;
         return;
     } else {
-        finishBuild = false;
         keepGoing = true;
         return;
     }
@@ -76,12 +72,10 @@ async function confirmBuild() {
 async function initBuild() {
     let manager = await inquirer.prompt(initPrompt);
     addEmployee(manager);
-    while (finishBuild === false) {
-        while (keepGoing === true) {
-            console.log("Here is your current team:");
-            console.log(team);
-            await handleRedirect();
-        }
+    while (keepGoing === true) {
+        console.log("Here is your current team:");
+        console.log(team);
+        await handleRedirect();
     }
     // console.log(team);
     return team;
