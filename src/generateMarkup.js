@@ -14,7 +14,8 @@ const header = `<!DOCTYPE html>
         <div class="container">
             <div class="row justify-content-center">`;
 
-const footer = `        </div>
+const footer = `
+        </div>
 </body>
 </html>`;
 
@@ -38,7 +39,8 @@ function generateCards(team) {
                 break;
         }
 
-        output += `                <div class="card col-4 border-primary m-3">
+        output += `
+                        <div class="card col-4 border-primary m-3">
         <div class="card-header text-center h1 p-3">${employee.getRole()}</div>
         <div class="card-body">
             <h4 class="card-title">Name: ${employee.getName()}</h4>
