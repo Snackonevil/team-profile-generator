@@ -30,19 +30,19 @@ const initPrompt = [
         type: "input",
         name: "id",
         message: "Manager's employee Id#:",
-        // validate: input => validateInteger(input),
+        validate: input => validateInteger(input),
     },
     {
         type: "input",
         name: "email",
         message: "Manager's email:",
-        // validate: email => validateEmail(email),
+        validate: email => validateEmail(email),
     },
     {
         type: "input",
         name: "officeNumber",
         message: "Manager's office number:",
-        // validate: input => validateInteger(input),
+        validate: input => validateInteger(input),
     },
 ];
 
@@ -68,13 +68,13 @@ const employeePrompt = [
         type: "input",
         name: "id",
         message: employee => `${employee.role}'s employee ID#:`,
-        // validate: input => validateInteger(input),
+        validate: input => validateInteger(input),
     },
     {
         type: "input",
         name: "email",
         message: employee => `${employee.role}'s Email:`,
-        // validate: email => validateEmail(email),
+        validate: email => validateEmail(email),
     },
     {
         type: "input",
