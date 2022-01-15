@@ -10,7 +10,7 @@ GitHub: [Snackonevil](https://github.com/Snackonevil)
 ## Description
 
 GitHub Repository: [Team-Profile-Generator-Repo](https://github.com/Snackonevil/team-profile-generator)  
-Walkthrough video: [Team-Profile-Generator-Walkthrough]()
+Walkthrough video: [Team-Profile-Generator-Walkthrough](https://watch.screencastify.com/v/HYO1PCXDvRDGbtik8N2Q)
 This app creates an easily viewed profile page for your team
 
 ---
