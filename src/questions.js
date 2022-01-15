@@ -79,7 +79,7 @@ const employeePrompt = [
     {
         type: "input",
         name: "github",
-        message: "Engineer's github:",
+        message: "Engineer's github username:",
         when: ({ role }) => role === "Engineer",
     },
     {
