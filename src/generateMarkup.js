@@ -34,7 +34,7 @@ function generateCards(team) {
                 break;
             case "Engineer":
                 extraInfo = "Github";
-                extraMethod = `<a href="https://github.com/${employee.getGithub()}">${employee.getGithub()}</a>`;
+                extraMethod = `<a href="https://github.com/${employee.getGithub()}" target="_blank">${employee.getGithub()}</a>`;
                 break;
             case "Intern":
                 extraInfo = "School";
