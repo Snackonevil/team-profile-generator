@@ -15,6 +15,8 @@ let team = [];
 // Menu State
 let keepGoing = true;
 
+const red = "\u001b[31m";
+
 // Instantiate class based on role and add to team
 function addEmployee({ role, name, id, email, officeNumber, github, school }) {
     role === "Engineer"
@@ -29,7 +31,7 @@ async function handleRemove() {
     const { id, answer } = await inquirer.prompt(removeEmployee);
     if (answer === true) {
         team = team.filter(employee => employee.id !== id);
-        console.log(`***Employee with ID ${id} has been removed***`);
+        console.log(red, `***Employee with ID ${id} has been removed***`);
     }
 }
 
@@ -73,7 +75,7 @@ async function initBuild() {
     let manager = await inquirer.prompt(initPrompt);
     addEmployee(manager);
     while (keepGoing === true) {
-        console.log("Here is your current team:");
+        console.log("\033[39m", "Here is your current team:");
         console.log(team);
         await handleRedirect();
     }
