@@ -11,6 +11,7 @@ GitHub: [Snackonevil](https://github.com/Snackonevil)
 
 GitHub Repository: [Team-Profile-Generator-Repo](https://github.com/Snackonevil/team-profile-generator)  
 Walkthrough video: [Team-Profile-Generator-Walkthrough](https://watch.screencastify.com/v/HYO1PCXDvRDGbtik8N2Q)
+
 This app creates an easily viewed profile page for your team
 
 ---
@@ -27,19 +28,21 @@ This app creates an easily viewed profile page for your team
 
 ## Installation
 
-Requires node modules  
-Run `npm install`
+Requires node modules "Jest" and "Inquirer"  
+Run `npm install` in the command line
 
 ---
 
 ## Usage
 
-`node index.js` or `npm start`
+`node index.js` or `npm start` in the command line
 
 Begin building team with manager information  
 ![manager-screenshot](./src/images/manager-screenshot.PNG)
 
-Either Add Employee, Build Employee, or Build Profile  
+**Note**: Id# and office# must be integers, and emails must be in valid email format
+
+Either Add Employee, Remove Employee, or Build Profile  
 ![menu-screenshot](./src/images/menu-screenshot.PNG)
 
 After each selection, you are shown your current team  
