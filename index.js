@@ -4,7 +4,9 @@ const generateMarkup = require("./src/generateMarkup");
 
 function writeProfile(markUp) {
     console.log("Rendering Team Profile...");
-    fs.writeFile("./dist/index.html", markUp, err => console.log(err));
+    fs.writeFile("./dist/index.html", markUp, err =>
+        err ? console.log(err) : console.log("Writing File...")
+    );
 }
 
 async function createProfile() {
