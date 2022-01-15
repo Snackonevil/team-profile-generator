@@ -1,3 +1,4 @@
+// HTML Head header and body beginning
 const header = `<!DOCTYPE html>
 <html lang="en">
     <head>
@@ -14,11 +15,13 @@ const header = `<!DOCTYPE html>
         <div class="container">
             <div class="row justify-content-center">`;
 
+// HTML close tags
 const footer = `
         </div>
 </body>
 </html>`;
 
+// Generate card for each employee
 function generateCards(team) {
     let output = "";
     team.forEach(employee => {
