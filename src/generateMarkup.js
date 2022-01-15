@@ -43,7 +43,7 @@ function generateCards(team) {
         <div class="card-body">
             <h4 class="card-title">Name: ${employee.getName()}</h4>
             <h4 class="card-title">Id: ${employee.getId()}</h4>
-            <h4 class="card-title">Email: ${employee.getEmail()}</h4>
+            <h4 class="card-title">Email: <a href="mailto:${employee.getEmail()}">${employee.getEmail()}</a></h4>
             <h4 class="card-title">${extraInfo}: ${extraMethod}</h4>
         </div>
     </div>`;
