@@ -1,10 +1,15 @@
+// This file has the question content for the prompts
+
+// Import inquirer module
 const inquirer = require("inquirer");
 
+// Integer validation
 function validateInteger(input) {
     const valid = !isNaN(parseInt(input));
     return valid ? true : "Please enter an integer";
 }
 
+// Email format vaildation
 // Found on StackOverflow.com Can be bypassed with email like "d@d.com"
 function validateEmail(email) {
     if (
@@ -20,6 +25,7 @@ function validateEmail(email) {
     }
 }
 
+// Initial prompt to build manager
 const initPrompt = [
     {
         type: "input",
@@ -46,6 +52,7 @@ const initPrompt = [
     },
 ];
 
+// Prompt to build employee
 const employeePrompt = [
     {
         type: "list",
@@ -90,6 +97,7 @@ const employeePrompt = [
     },
 ];
 
+// Prompt to confirm finalization
 const finalizeTeam = [
     {
         type: "confirm",
@@ -99,6 +107,7 @@ const finalizeTeam = [
     },
 ];
 
+// Essentially the main menu prompt
 const redirect = [
     {
         type: "list",
@@ -114,6 +123,7 @@ const redirect = [
     },
 ];
 
+// Prompt to garther employee ID to remove from team
 const removeEmployee = [
     {
         type: "input",

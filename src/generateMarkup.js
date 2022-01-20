@@ -1,4 +1,7 @@
-// HTML Head header and body beginning
+// This file has the function that generates the markup
+// It also has the html template content
+
+// HTML Head, header, and body beginning
 const header = `<!DOCTYPE html>
 <html lang="en">
     <head>
@@ -21,7 +24,7 @@ const footer = `
 </body>
 </html>`;
 
-// Generate card for each employee
+// Generate card for each employee base on role
 function generateCards(team) {
     let output = "";
     team.forEach(employee => {
@@ -42,6 +45,7 @@ function generateCards(team) {
                 break;
         }
 
+        // Append HTML code block for card for each employee
         output += `
                         <div class="card col-4 border-primary m-3">
         <div class="card-header text-center h1 p-3">${employee.getRole()}</div>
@@ -56,10 +60,10 @@ function generateCards(team) {
     return output;
 }
 
+// Generates the Markup for HTML file
 async function generateMarkup(team) {
     console.log("Generating Markup...");
     const body = await generateCards(team);
-
     return header + body + footer;
 }
 

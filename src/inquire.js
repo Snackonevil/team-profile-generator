@@ -1,4 +1,9 @@
+// This file has the functions that prompts the user with inqurier and handles the actions
+
+// Import Inquirer module
 const inquirer = require("inquirer");
+
+// Import content for prompts (destructured)
 const {
     initPrompt,
     employeePrompt,
@@ -6,11 +11,13 @@ const {
     redirect,
     removeEmployee,
 } = require("./questions");
+
+// Classes extending Employee Class
 const Manager = require("../lib/Manager");
 const Engineer = require("../lib/Engineer");
 const Intern = require("../lib/Intern");
 
-// Team Array
+// Initialize Team Array
 let team = [];
 // Menu State
 let keepGoing = true;
@@ -26,7 +33,7 @@ function addEmployee({ role, name, id, email, officeNumber, github, school }) {
         : team.push(new Manager(name, id, email, officeNumber));
 }
 
-// Remove selected employee with id from team array
+// Prompt and remove selected employee with id from team array
 async function handleRemove() {
     const { id, answer } = await inquirer.prompt(removeEmployee);
     if (answer === true) {
@@ -82,4 +89,5 @@ async function initBuild() {
     // console.log(team);
     return team;
 }
+
 module.exports = initBuild;
